@@ -4,7 +4,13 @@ const fs = require("node:fs/promises");
 //   if (err) return console.log(err);
 //   fs.readFile(fileTwo, (err) => {
 //     if (err) return console.log(err);
-//     fs.readFile(fileThree);
+//     fs.readFile(fileThree, (err) => {
+//       if (err) return console.log(err);
+//       fs.readFile(fileFour, "utf-8" (err) => {
+//         if (err) return console.log(err);
+//         console.log()
+//       })
+//     })
 //   });
 // });
 // const fileThree = fs.readfileSync(fileTwo);
@@ -52,8 +58,9 @@ const fs = require("node:fs/promises");
 
 // const readFileP = promisify(fs.readFile);
 
-const fileTwo = await fs.readFile("file1.txt")
-  const fileThree = await fs.readFile((fileTwo) => {
+const fileTwo = await fs.readFile("file1.txt");
+const fileThree = await fs
+  .readFile((fileTwo) => {
     readFile(fileTwo);
   })
   .then((fileThree) => {
@@ -73,6 +80,7 @@ const fileTwo = await fs.readFile("file1.txt")
 //   console.log(result.toString());
 // }
 
-
+// this is for week 5!
+// can only use try catch with async functions!
 
 // anything inside async function SHOULD wait for each other
