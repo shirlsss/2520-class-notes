@@ -48,27 +48,31 @@ const fs = require("node:fs/promises");
 // refactoring code
 // delete all callbacks => select all ifs and delete
 
-const { promisify } = require("node:util");
+// const { promisify } = require("node:util");
 
 // const readFileP = promisify(fs.readFile);
 
-// const fileTwo = await fs.readFile("file1.txt")
-//   const fileThree = await fs.readFile((fileTwo) => {
-//     readFile(fileTwo);
-//   })
-//   .then((fileThree) => {
-//     readFile(fileThree);
-//   })
-//   .then((fileFour) => readFile(fileFour))
-//   .then((result) => console.log(result))
-//   .catch((err) => {
-//     console.log(err);
-//   });
+const fileTwo = await fs.readFile("file1.txt")
+  const fileThree = await fs.readFile((fileTwo) => {
+    readFile(fileTwo);
+  })
+  .then((fileThree) => {
+    readFile(fileThree);
+  })
+  .then((fileFour) => readFile(fileFour))
+  .then((result) => console.log(result))
+  .catch((err) => {
+    console.log(err);
+  });
 
-async function run() {
-  const fileTwo = await fs.readFile("file1.txt");
-  const fileThree = await fs.readFile(fileTwo);
-  const fileFour = await fs.readFile(fileThree);
-  const result = await fs.readFile(fileFour);
-  console.log(result.toString());
-}
+// async function run() {
+//   const fileTwo = await fs.readFile("file1.txt");
+//   const fileThree = await fs.readFile(fileTwo);
+//   const fileFour = await fs.readFile(fileThree);
+//   const result = await fs.readFile(fileFour);
+//   console.log(result.toString());
+// }
+
+
+
+// anything inside async function SHOULD wait for each other
