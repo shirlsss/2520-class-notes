@@ -44,21 +44,35 @@ export function like(id: string) {
   // TODO: 🚀 Find the tip from tips, based on id.
   //          - increment the number of likes
   //          - return the found and liked tip
-  let currentTip = tips.find((TTip) => TTip.id === id);
-  currentTip.likes += 1;
+  const currentTip = tips.find((t) => t.id === id);
+  if (currentTip) {
+    currentTip.likes += 1;
+    return currentTip;
+  }
 }
-
 // TODO: replace any with the correct type here!
-export function dislike(id: any) {
+export function dislike(id: string) {
   // TODO: 🚀 Find the tip from tips, based on id.
   //          - decrement the number of likes if greater than 0
   //          - return the found and disliked tip
+  const currentTip = tips.find((t) => t.id === id);
+  if (currentTip) {
+    if (currentTip.likes > 0) {
+      currentTip.likes -= 1;
+      return currentTip;
+    }
+  }
 }
 
-export function remove(id: any) {
+export function remove(id: string) {
   // TODO: 🚀 - remove the tip from tips by id by using .filter.
   //          - filter should give you back an array of all tips
   //            MINUS the one you are trying to remove. set tips
   //            equal to this newly filtered list.
   //          - return true if removed, false if no change.
+  if (tips.find((t) => t.id === id)) {
+    const newTips = tips.filter((t) => t.id != id);
+    tips = newTips;
+    return true;
+  } else return false;
 }
