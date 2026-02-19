@@ -29,7 +29,7 @@ export function addTip(text: string) {
   //          - likes: by default should be 0
   //          - createdAt: just use Date.now()
   //       return the created tip when you're done.
-  let newTip = {
+  const newTip = {
     id: randomUUID(),
     text: text,
     likes: 0,
@@ -50,6 +50,7 @@ export function like(id: string) {
     return currentTip;
   }
 }
+
 // TODO: replace any with the correct type here!
 export function dislike(id: string) {
   // TODO: 🚀 Find the tip from tips, based on id.
@@ -71,7 +72,7 @@ export function remove(id: string) {
   //            equal to this newly filtered list.
   //          - return true if removed, false if no change.
   if (tips.find((t) => t.id === id)) {
-    const newTips = tips.filter((t) => t.id != id);
+    const newTips = tips.filter((t) => t.id !== id);
     tips = newTips;
     return true;
   } else return false;
