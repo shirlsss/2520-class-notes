@@ -29,7 +29,7 @@ export function addTip(text: string) {
   //          - likes: by default should be 0
   //          - createdAt: just use Date.now()
   //       return the created tip when you're done.
-  const newTip = {
+  const newTip: TTip = {
     id: randomUUID(),
     text: text,
     likes: 0,

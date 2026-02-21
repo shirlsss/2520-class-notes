@@ -29,11 +29,10 @@ app.post("/tips", (req, res) => {
   // TODO: 🚀 Check if it's empty.
   // TODO: 🚀 If it's not empty, send it to addTip() function.
   // TODO: 🚀 redirect to homepage
-  const tipText = req.body;
+  const tipText = req.body.text;
   if (tipText) {
     addTip(tipText);
-    res.statusCode = 302;
-    res.setHeader("Location", "/");
+    res.redirect("/");
   }
 });
 
@@ -43,8 +42,7 @@ app.post("/tips/:id/like", (req, res) => {
   // TODO: 🚀 redirect to homepage
   const id = req.url.split("/")[2];
   if (id) like(id);
-  res.statusCode = 302;
-  res.setHeader("Location", "/");
+  res.redirect("/");
 });
 
 app.post("/tips/:id/dislike", (req, res) => {
@@ -53,7 +51,7 @@ app.post("/tips/:id/dislike", (req, res) => {
   const id = req.url.split("/")[2];
   if (id) dislike(id);
   res.statusCode = 302;
-  res.setHeader("Location", "/");
+  res.redirect("/");
 });
 
 app.post("/tips/:id/delete", (req, res) => {
@@ -62,7 +60,7 @@ app.post("/tips/:id/delete", (req, res) => {
   const id = req.url.split("/")[2];
   if (id) remove(id);
   res.statusCode = 302;
-  res.setHeader("Location", "/");
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {
