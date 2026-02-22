@@ -5,6 +5,7 @@ const main = () => {
     .then((menu) => {
       let menuToProcess = menu.toString();
       menuToProcess = menuToProcess.split("\n");
+      console.log(menuToProcess, typeof menuToProcess);
       var times = [];
       exampleString = "";
       var lunch = `* Lunch *\n`;
@@ -13,9 +14,7 @@ const main = () => {
       const dinnerOriginalLength = dinner.length;
       var dessert = `* Dessert *\n`;
       const dessertOriginalLength = dessert.length;
-      for (var line of menuToProcess) {
-        line = line.split(",");
-      }
+
       for (var line of menuToProcess) {
         line = line.split(",");
         var time = line[0];
