@@ -5,13 +5,14 @@ const { EOL } = require("node:os");
 const readCSV = (csv) => fs.readFile(csv, "utf8");
 const parseCSV = (data) => data.split(EOL);
 const groupCSV = (data) => {};
+const writeToCSV = (data) => fs.writeFile(data, "");
 // not using fs - so don't use await
 async function main() {
   try {
     const data = await readCSV("menu.csv");
     const rows = parseCSV(data);
     const groupedData = groupData(rows);
-    await writeTxt("menu.txt");
+    await writeToCSV("menu.txt");
   } catch (error) {
     console.log(error);
   }

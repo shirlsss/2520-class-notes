@@ -13,7 +13,6 @@ const separateString = (data) => {
 const groupSet = (data) => {
   meals = {};
   for (var entry of data) {
-    console.log(entry);
     entry = entry.split(",");
     var mealType = entry[0];
     const item = entry[1];
@@ -31,8 +30,35 @@ const groupSet = (data) => {
   return meals;
 };
 
-const writeMenu = (data) => {
-  return fs.writeFile(data);
+// meal is the key - to access its value, need to do data[meal]
+const createMenuString = (data) => {
+  toWrite = "";
+  for (const meal in data) {
+    if (meal == "lunch") {
+      toWrite += `* Lunch *${EOL}`;
+      const meals = data[meal];
+      for (const entry of meals) {
+        toWrite += `${entry}${EOL}`;
+      }
+    } else if (meal == "dinner") {
+      toWrite += `* Dinner *${EOL}`;
+      const meals = data[meal];
+      for (const entry of meals) {
+        toWrite += `${entry}${EOL}`;
+      }
+    } else if (meal == "dessert") {
+      toWrite += `* Dessert *${EOL}`;
+      const meals = data[meal];
+      for (const entry of meals) {
+        toWrite += `${entry}${EOL}`;
+      }
+    }
+  }
+  return toWrite;
+};
+
+const writeMenu = (f, data) => {
+  return fs.writeFile(f, data);
 };
 
 async function main() {
@@ -40,6 +66,8 @@ async function main() {
     const data = await readCSV("menu.csv");
     const separated = separateString(data);
     const groupedItems = groupSet(separated);
+    const menuString = createMenuString(groupedItems);
+    await writeMenu("menu.txt", menuString);
   } catch (error) {
     console.log(error);
   }
